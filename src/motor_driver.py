@@ -67,15 +67,17 @@ class MotorDriver:
         '''!
         This method enables the motor.
         '''
-        print('Enabling motor...')
+        print('Enabling motor...', end=' ')
         self._m_ena.high()
+        print('finished.')
 
     def disable_motor(self):
         '''!
         This method disables the motor.
         '''
-        print('Disabling motor...')
+        print('Disabling motor...', end=' ')
         self._m_ena.low()
+        print('finished.')
 
     def set_duty_cycle(self, level: int):
         '''!
@@ -86,7 +88,7 @@ class MotorDriver:
         @param level A signed integer holding the duty
                 cycle of the voltage sent to the motor
         '''
-        print('Setting duty cycle to ' + str(level))
+        print('Setting duty cycle to ' + str(level), end=' ')
 
         # spin counter-clockwise
         if level < 0:
@@ -100,6 +102,8 @@ class MotorDriver:
         else:
             self._m_ch1.pulse_width_percent(0)
             self._m_ch2.pulse_width_percent(0)
+
+        print('finished.')
 
 # PB6 T4CH1
 # PB7 T4CH2

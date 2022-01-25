@@ -66,6 +66,7 @@ class EncoderDriver:
         @param setpoint The setpoint to compare the count to
         @return The error between the current count and the setpoint
         '''
+        print('Getting the error...', end=' ')
         right = setpoint - self.get_count()
         if right < 0:
             right += 0x7FFF # add 2 ^ 15 to account for rollover
@@ -74,4 +75,5 @@ class EncoderDriver:
         if left < 0:
             left += 0x7FFF
         
+        print('finished.')
         return right if right < left else -left

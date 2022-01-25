@@ -19,8 +19,8 @@ def main():
 
     servo = Servo(m_config, e_config, 0.00625)
 
-    servo.move_to_point(0)
-    servo.move_to_point(16000)
+    servo.enable_motor()
+    servo.set_duty_cycle(50)
 
 
 if __name__ == '__main__':
