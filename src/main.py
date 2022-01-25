@@ -19,8 +19,8 @@ def main():
 
     servo = Servo(m_config, e_config)
 
-    servo.move_to_point(servo.get_count() + 1000)
-    servo.move_to_point(servo.get_count() - 1000)
+    servo.move_to_point(0)
+    servo.move_to_point(16000)
 
 
 if __name__ == '__main__':
