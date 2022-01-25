@@ -59,3 +59,19 @@ class EncoderDriver:
         @return The current count of the encoder
         '''
         return self._e_tim.counter()
+
+    def get_error(self, setpoint: int) -> int:
+        '''!
+        This method returns the error between the count and the setpoint
+        @param setpoint The setpoint to compare the count to
+        @return The error between the current count and the setpoint
+        '''
+        right = setpoint - self.get_count()
+        if right < 0:
+            right += 0x7FFF # add 2 ^ 15 to account for rollover
+
+        left = self.get_count() - setpoint
+        if left < 0:
+            left += 0x7FFF
+        
+        return right if right < left else -left
