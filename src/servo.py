@@ -14,7 +14,7 @@ class Servo(MotorDriver, EncoderDriver):
 
     gain: float
 
-    def __init__(self, m_config: MotorConfig, e_config: EncoderConfig, gain: float = 0.1) -> None:
+    def __init__(self, m_config: MotorConfig, e_config: EncoderConfig, gain: float = 0.00625) -> None:
         '''!
         Creates a servo object by initializing the motor and encoder drivers.
         @param m_config The motor configuration
@@ -24,7 +24,7 @@ class Servo(MotorDriver, EncoderDriver):
         EncoderDriver.__init__(self, *e_config.args)
         self.gain = gain
 
-    def move_to_point(self, setpoint: int) -> int:
+    def move_to_point(self, setpoint: int) -> None:
         '''!
         This method moves the servo to the given setpoint.
         There is a timeout of 5 seconds
