@@ -9,7 +9,7 @@
 
 import pyb
 import utime
-from enc_driver import EncoderConfig, EncoderDriver
+from enc_driver import EncoderConfig
 from motor_driver import MotorConfig
 from servo import Servo
 from pid_controller import PID
