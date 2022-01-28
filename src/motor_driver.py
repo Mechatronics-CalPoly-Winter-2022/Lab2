@@ -93,14 +93,12 @@ class MotorDriver:
         '''
         # adjust the duty cycle to be within the range of 0 to 100
         level = max(min(level, 100), -100)
-        if abs(level) < 20:
+        if abs(level) < 25:
             if level < 0:
-                level = -20
+                level = -25
             else:
-                level = 20
+                level = 25
         level = round(level)
-
-        print('Setting duty cycle to ' + str(level), end=' ')
 
         # spin counter-clockwise
         if level < 0:
@@ -114,8 +112,6 @@ class MotorDriver:
         else:
             self._m_ch1.pulse_width_percent(0)
             self._m_ch2.pulse_width_percent(0)
-
-        print('finished.')
 
 # PB6 T4CH1
 # PB7 T4CH2

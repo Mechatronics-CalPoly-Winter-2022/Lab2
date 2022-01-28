@@ -46,6 +46,5 @@ class Servo(MotorDriver, EncoderDriver):
             err = self.get_error(setpoint)
             pwm = -1 * err * self.gain
             self.set_duty_cycle(pwm)
-            print(err, self.read())
 
         print(f'finished at {self.read()}')
