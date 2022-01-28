@@ -27,7 +27,7 @@ def main():
 
     # initialize the pid controller
     # 17232 is 1/2 of the encoder
-    pid = PID(17232, input())
+    pid = PID(17232, 0.0058)
 
     # initialize encoder and time data lists
     encoder_data = []
@@ -45,6 +45,8 @@ def main():
 
         utime.sleep_ms(10)
 
+    print(f'ended at {encoder_data[-1]}')
+
     # run it again
     pid.set_setpoint(34000)
     timeout = utime.ticks_add(utime.ticks_ms(), 5000)
@@ -57,6 +59,8 @@ def main():
         time_data.append(utime.ticks_add(utime.ticks_ms(), 0))
 
         utime.sleep_ms(10)
+
+    print(f'ended at {encoder_data[-1]}')
 
     # reduce every element in time_data by the first element
     time_data = [x - time_data[0] for x in time_data]

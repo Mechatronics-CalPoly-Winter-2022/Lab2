@@ -85,11 +85,11 @@ class MotorDriver:
         '''
         # adjust the duty cycle to be within the range of 0 to 100
         level = max(min(level, 100), -100)
-        if abs(level) < 20:
+        if level != 0 and abs(level) < 25:
             if level < 0:
-                level = -20
+                level = -25
             else:
-                level = 20
+                level = 25
         level = round(level)
 
         # spin counter-clockwise

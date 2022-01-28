@@ -35,7 +35,7 @@ class PID:
         '''
         self.setpoint = new
 
-    def set_proportinal_gain(self, new: float) -> None:
+    def set_proportional_gain(self, new: float) -> None:
         '''!
         Sets the proportional gain.
         @param new The new proportional gain
