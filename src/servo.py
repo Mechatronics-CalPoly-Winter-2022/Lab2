@@ -20,12 +20,8 @@ class Servo(MotorDriver, EncoderDriver):
         @param m_config The motor configuration
         @param e_config The encoder configuration
         '''
-        print('Creating a servo...', end=' ')
-
         MotorDriver.__init__(self, *m_config.args)
         EncoderDriver.__init__(self, *e_config.args)
-
-        print('finished.')
 
     # def move_to_point(self, setpoint: int) -> None:
     #     '''!

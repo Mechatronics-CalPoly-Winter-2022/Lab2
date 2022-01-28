@@ -41,9 +41,6 @@ class EncoderDriver:
         @param enc_2 The pin to which the second encoder signal
         @param timer The timer to use for the encoder
         '''
-
-        print('Creating an encoder driver...', end=' ')
-
         # setup the timer for quadrature decoding
         self._e_tim = timer
         self._e_tim.init(prescaler=1, period=100000)
@@ -55,8 +52,6 @@ class EncoderDriver:
         # setup the channels for quadrature decoding
         self._e_ch1 = self._e_tim.channel(1, pyb.Timer.ENC_A, pin=self._e_pin1)
         self._e_ch2 = self._e_tim.channel(2, pyb.Timer.ENC_B, pin=self._e_pin2)
-
-        print('finished.')
 
     def read(self) -> int:
         '''!
@@ -85,4 +80,4 @@ class EncoderDriver:
         if left < 0:
             left += self.MAX_VAL
         
-        return right if right < left else -left
+        return right if right <= left else -left

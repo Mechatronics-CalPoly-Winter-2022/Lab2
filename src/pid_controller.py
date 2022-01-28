@@ -72,4 +72,6 @@ class PID:
         '''
         min_length = min(len(encoder_data), len(time_data))
         for i in range(min_length):
-            print(f'{encoder_data[i]} {time_data[i]}')
+            print(f'{encoder_data[i]},{time_data[i]}')
+
+        print('end.')

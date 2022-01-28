@@ -46,8 +46,6 @@ class MotorDriver:
         @param in2pin Clockwise pin ...?
         @param timer The timer to use for PWM
         '''
-        print('Creating a motor driver...', end=' ')
-
         # set timer frequency to 20 kHz
         timer.init(freq=20000)
 
@@ -64,23 +62,17 @@ class MotorDriver:
 
         self.disable_motor()
 
-        print('finished.')
-
     def enable_motor(self):
         '''!
         This method enables the motor.
         '''
-        print('Enabling motor...', end=' ')
         self._m_ena.high()
-        print('finished.')
 
     def disable_motor(self):
         '''!
         This method disables the motor.
         '''
-        print('Disabling motor...', end=' ')
         self._m_ena.low()
-        print('finished.')
 
     def set_duty_cycle(self, level: int):
         '''!
@@ -100,8 +92,6 @@ class MotorDriver:
                 level = 20
         level = round(level)
 
-        print('Setting duty cycle to ' + str(level), end=' ')
-
         # spin counter-clockwise
         if level < 0:
             self._m_ch1.pulse_width_percent(-level)
@@ -114,8 +104,3 @@ class MotorDriver:
         else:
             self._m_ch1.pulse_width_percent(0)
             self._m_ch2.pulse_width_percent(0)
-
-        print('finished.')
-
-# PB6 T4CH1
-# PB7 T4CH2
