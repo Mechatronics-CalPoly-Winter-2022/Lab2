@@ -46,6 +46,7 @@ def main():
         utime.sleep_ms(10)
 
     # run it again
+    pid.set_setpoint(34000)
     timeout = utime.ticks_add(utime.ticks_ms(), 5000)
     while utime.ticks_diff(timeout, utime.ticks_ms()) > 0:
         # get the error and adjust the duty cycle
