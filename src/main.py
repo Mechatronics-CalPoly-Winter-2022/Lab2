@@ -27,7 +27,7 @@ def main():
 
     # initialize the pid controller
     # 17232 is 1/2 of the encoder
-    pid = PID(17232, 0.0058)
+    pid = PID(17000, 0.0058)
 
     # initialize encoder and time data lists
     encoder_data = []
@@ -38,17 +38,19 @@ def main():
     while utime.ticks_diff(timeout, utime.ticks_ms()) > 0:
         # get the error and adjust the duty cycle
         servo.set_duty_cycle(pid.update(servo.get_error(pid.setpoint)))
-
+        
         # get the encoder data and time data
         encoder_data.append(servo.read())
+        
         time_data.append(utime.ticks_add(utime.ticks_ms(), 0))
+        
 
         utime.sleep_ms(10)
 
     print(f'ended at {encoder_data[-1]}')
 
     # run it again
-    pid.set_setpoint(34000)
+    pid.set_setpoint(33000)
     timeout = utime.ticks_add(utime.ticks_ms(), 5000)
     while utime.ticks_diff(timeout, utime.ticks_ms()) > 0:
         # get the error and adjust the duty cycle
@@ -60,15 +62,16 @@ def main():
 
         utime.sleep_ms(10)
 
+    servo.disable_motor()
+    
     print(f'ended at {encoder_data[-1]}')
 
     # reduce every element in time_data by the first element
     time_data = [x - time_data[0] for x in time_data]
 
+
     # print the encoder data and time data
     pid.print_data(encoder_data, time_data)
-
-    servo.disable_motor()
 
 
 if __name__ == '__main__':
