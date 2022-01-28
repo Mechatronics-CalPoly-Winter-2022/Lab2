@@ -48,6 +48,9 @@ class MotorDriver:
         '''
         print('Creating a motor driver...', end=' ')
 
+        # set timer frequency to 20 kHz
+        timer.init(freq=20000)
+
         # activate motor
         self._m_ena = pyb.Pin(en_pin, pyb.Pin.OUT_OD, pyb.Pin.PULL_UP)
 
@@ -88,6 +91,15 @@ class MotorDriver:
         @param level A signed integer holding the duty
                 cycle of the voltage sent to the motor
         '''
+        # adjust the duty cycle to be within the range of 0 to 100
+        level = max(min(level, 100), -100)
+        if abs(level) < 20:
+            if level < 0:
+                level = -20
+            else:
+                level = 20
+        level = round(level)
+
         print('Setting duty cycle to ' + str(level), end=' ')
 
         # spin counter-clockwise

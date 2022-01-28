@@ -14,7 +14,7 @@ class Servo(MotorDriver, EncoderDriver):
 
     gain: float
 
-    def __init__(self, m_config: MotorConfig, e_config: EncoderConfig, gain: float = 0.00625) -> None:
+    def __init__(self, m_config: MotorConfig, e_config: EncoderConfig, gain: float = 0.0058) -> None:
         '''!
         Creates a servo object by initializing the motor and encoder drivers.
         @param m_config The motor configuration
@@ -43,7 +43,9 @@ class Servo(MotorDriver, EncoderDriver):
 
         while time.time() < timeout:
             # set duty cycle according to distance to setpoint and servo gain
-            pwm = self.get_error(setpoint) * self.gain
+            err = self.get_error(setpoint)
+            pwm = -1 * err * self.gain
             self.set_duty_cycle(pwm)
+            print(err, self.read())
 
-        print(f'finished at {self.get_count()}')
+        print(f'finished at {self.read()}')

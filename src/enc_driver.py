@@ -26,6 +26,8 @@ class EncoderDriver:
     This class implements an encoder driver for an ME405 kit.
     '''
 
+    MAX_VAL: int = 34464
+
     _e_pin1: 'pyb.Pin'
     _e_pin2: 'pyb.Pin'
     _e_tim: 'pyb.Timer'
@@ -42,23 +44,32 @@ class EncoderDriver:
 
         print('Creating an encoder driver...', end=' ')
 
+        # setup the timer for quadrature decoding
+        self._e_tim = timer
+        self._e_tim.init(prescaler=1, period=100000)
+
+        # setup the pins for quadrature decoding
         self._e_pin1 = pyb.Pin(enc_1, pyb.Pin.AF_PP)
         self._e_pin2 = pyb.Pin(enc_2, pyb.Pin.AF_PP)
-        self._e_tim = timer
-        self._e_tim.prescaler(1)
-        self._e_tim.period(100000)
 
+        # setup the channels for quadrature decoding
         self._e_ch1 = self._e_tim.channel(1, pyb.Timer.ENC_A, pin=self._e_pin1)
         self._e_ch2 = self._e_tim.channel(2, pyb.Timer.ENC_B, pin=self._e_pin2)
 
         print('finished.')
 
-    def get_count(self) -> int:
+    def read(self) -> int:
         '''!
         This method returns the current count of the encoder.
         @return The current count of the encoder
         '''
         return self._e_tim.counter()
+
+    def zero(self) -> None:
+        '''!
+        This method resets the encoder's count to 0.
+        '''
+        self._e_tim.counter(0)
 
     def get_error(self, setpoint: int) -> int:
         '''!
@@ -66,14 +77,12 @@ class EncoderDriver:
         @param setpoint The setpoint to compare the count to
         @return The error between the current count and the setpoint
         '''
-        print('Getting the error...', end=' ')
-        right = setpoint - self.get_count()
+        right = setpoint - self.read()
         if right < 0:
-            right += 0x7FFF # add 2 ^ 15 to account for rollover
+            right += self.MAX_VAL # account for rollover
 
-        left = self.get_count() - setpoint
+        left = self.read() - setpoint
         if left < 0:
-            left += 0x7FFF
+            left += self.MAX_VAL
         
-        print('finished.')
         return right if right < left else -left

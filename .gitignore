@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# vscode stuff
+.vscode/
+.micropy/
+.pylintrc
+micropy.json
+pymakr.conf
+*requirements.txt
