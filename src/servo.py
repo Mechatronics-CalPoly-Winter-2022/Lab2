@@ -2,7 +2,6 @@
 [file description]
 """
 
-import time
 from enc_driver import EncoderDriver, EncoderConfig
 from motor_driver import MotorDriver, MotorConfig
 

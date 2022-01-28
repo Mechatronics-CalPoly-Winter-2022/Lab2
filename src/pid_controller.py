@@ -1,5 +1,3 @@
-
-
 class PID:
     '''!
     Class that implements a PID controller.
@@ -64,7 +62,7 @@ class PID:
         # return the PID output
         return p + i + d
 
-    def print_data(self, encoder_data: list[int], time_data: list[int]) -> None:
+    def print_data(self, encoder_data: list, time_data: list) -> None:
         '''!
         Prints the data of the encoder and time.
         @param encoder_data The encoder data

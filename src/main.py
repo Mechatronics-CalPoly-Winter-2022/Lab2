@@ -65,7 +65,8 @@ def main():
     pid.print_data(encoder_data, time_data)
 
     servo.disable_motor()
-    
+
 
 if __name__ == '__main__':
+    print('starting...')
     main()

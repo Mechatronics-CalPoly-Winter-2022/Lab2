@@ -1,5 +1,4 @@
 import serial
-import time
 
 
 def main():
@@ -11,9 +10,6 @@ def main():
             print('Kp must be a number.')
             return
         ser.write(kp.encode())
-
-        # wait for the response to finish
-        time.sleep(15)
 
 
 if __name__ == '__main__':

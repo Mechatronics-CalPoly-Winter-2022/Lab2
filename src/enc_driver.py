@@ -74,10 +74,10 @@ class EncoderDriver:
         '''
         right = setpoint - self.read()
         if right < 0:
-            right += self.MAX_VAL # account for rollover
+            right += self.MAX_VAL  # account for rollover
 
         left = self.read() - setpoint
         if left < 0:
             left += self.MAX_VAL
-        
+
         return right if right <= left else -left
