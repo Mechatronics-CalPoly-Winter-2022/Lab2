@@ -92,13 +92,13 @@ class MotorDriver:
                 level = 25
         level = round(level)
 
-        if level > 0:
-            self._m_ch1.pulse_width_percent(level)
+        if level < 0:
+            self._m_ch1.pulse_width_percent(-level)
             self._m_ch2.pulse_width_percent(0)
         # spin clockwise
-        elif level < 0:
+        elif level > 0:
             self._m_ch1.pulse_width_percent(0)
-            self._m_ch2.pulse_width_percent(-level)
+            self._m_ch2.pulse_width_percent(level)
         # stop
         else:
             self._m_ch1.pulse_width_percent(0)
