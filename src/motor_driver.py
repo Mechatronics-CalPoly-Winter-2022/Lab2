@@ -1,5 +1,5 @@
-"""! @brief
-[file description]
+"""! 
+@brief Offers functionality for driving the motor with PWM.
 """
 
 import pyb      # import the micropy library

@@ -2,7 +2,6 @@
 @brief This file tests the servo class by telling the servo
 to go to a specified position, and then another position so 
 that the encoder tics through an entire revolution (0 - ~34000).
-
 """
 
 ##

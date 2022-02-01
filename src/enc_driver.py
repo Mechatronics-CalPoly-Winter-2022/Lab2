@@ -1,5 +1,6 @@
-"""! @brief
-[file description]
+"""! 
+@brief Offers functionality that enables reading the current position of
+the motor in encoder tics. 
 """
 
 import pyb      # import the micropy library
