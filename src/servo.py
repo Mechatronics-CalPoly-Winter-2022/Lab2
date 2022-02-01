@@ -1,5 +1,6 @@
-"""! @brief
-[file description]
+"""! 
+@brief A class that inherits from both the MotorDriver and 
+EncoderDriver classes. Offers full functionality from both classes.
 """
 
 from enc_driver import EncoderDriver, EncoderConfig

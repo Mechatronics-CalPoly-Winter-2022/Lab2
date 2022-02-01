@@ -1,11 +1,20 @@
-"""! @brief
-[file description]
+"""! 
+@brief This file tests the servo class by telling the servo
+to go to a specified position, and then another position so 
+that the encoder tics through an entire revolution (0 - ~34000).
+
 """
 
 ##
 # @mainpage
+# @section description_main Lab 2
+# This is an extension of the previous labs, combining both
+# the motor and encoder drivers into a unified servo class.
+# This allows both control of the motor and access to it's 
+# position.
+#
 # @author Kyle Jennings, Zarek Lazowski, William Dorosk
-# @date January 11th, 2022
+# @date February 1st, 2022
 
 import pyb
 import utime
